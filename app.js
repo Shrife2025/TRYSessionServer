@@ -36,15 +36,16 @@ app.use(
     store: MongoStore.create({
       mongoUrl: process.env.DATABASELINK,
       collectionName: "sessions",
-      ttl: 24 * 60 * 60,
     }),
+    proxy: true, // 🔥 مهم جدًا مع Vercel
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: ".vercel.app", // 🔥 مهم جدًا
     },
-  }),
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
