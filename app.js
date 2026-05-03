@@ -103,7 +103,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   return res.status(401).json({ message: "Unauthorized" });
 }
-app.get("/me",isLoggedIn, (req, res) => {
+app.get("/me", (req, res) => {
   try {
     if (!req.user) {
       return res.status(401).json({
